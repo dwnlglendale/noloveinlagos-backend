@@ -12,11 +12,10 @@ app.use(express.json());
 
 // PostgreSQL pool setup
 const pool = new Pool({
-  user: process.env.PGUSER,
-  host: process.env.PGHOST,
-  database: process.env.PGDATABASE,
-  password: process.env.PGPASSWORD,
-  port: process.env.PGPORT,
+  connectionString: process.env.POSTGRES_URL,
+  ssl: {
+    rejectUnauthorized: false, // This is for development purposes. For production, ensure you properly configure SSL certificates.
+  },
 });
 
 // Test route
